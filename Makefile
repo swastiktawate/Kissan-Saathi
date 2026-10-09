@@ -12,6 +12,7 @@ setup:
 
 seed:
 	$(PYTHON) backend/scripts/init_db.py
+	$(PYTHON) backend/scripts/ingest.py
 
 run-api:
 	$(UVICORN) backend.app.main:app --reload
