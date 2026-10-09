@@ -1,0 +1,39 @@
+{
+  "options": [
+    {
+      "mandi": "Vashi",
+      "day": 0,
+      "price": 2000.0,
+      "transport": 100.0,
+      "spoilage": 0.05,
+      "commission": 100.0,
+      "storage": 0.0,
+      "nr_p10": 1700.0,
+      "nr_p50": 1800.0,
+      "nr_p90": 1900.0,
+      "distance": 25.0,
+      "distance_method": "estimated",
+      "is_best": true
+    }
+  ],
+  "meta": {
+    "data_mode": "sample",
+    "as_of": "2026-10-09T08:30:00+05:30",
+    "latest_observation_date": "2026-10-08",
+    "sources": [
+      {
+        "name": "data.gov.in",
+        "origin": "cached",
+        "fetched_at": "2026-10-08T20:00:00Z"
+      }
+    ],
+    "trust": {
+      "score": 72.0,
+      "label": "High",
+      "calibrated": false
+    },
+    "warnings": [],
+    "llm_mode": "rule_based"
+  },
+  "_example": true
+}

@@ -1,0 +1,60 @@
+{
+  "action": "INSUFFICIENT_DATA",
+  "headline_key": "rec.insufficient",
+  "params": {},
+  "confidence": "Insufficient",
+  "expected_gain_per_q": {
+    "p10": 0.0,
+    "p50": 0.0,
+    "p90": 0.0
+  },
+  "expected_total": {
+    "p50": 0.0,
+    "unit": "INR"
+  },
+  "reference": {
+    "mandi": "Vashi",
+    "day": 0,
+    "nr_p50": 0.0
+  },
+  "best": {
+    "mandi": "Vashi",
+    "day": 0,
+    "nr_p10": 0.0,
+    "nr_p50": 0.0,
+    "nr_p90": 0.0
+  },
+  "split_plan": null,
+  "cost_of_waiting": [],
+  "drivers": {
+    "price_effect": 0.0,
+    "spoilage": 0.0,
+    "storage": 0.0,
+    "transport": 0.0,
+    "commission": 0.0
+  },
+  "reasons": [
+    {
+      "key": "reason.stale",
+      "params": {
+        "days": 6
+      }
+    }
+  ],
+  "flags": [],
+  "assumptions": [],
+  "meta": {
+    "data_mode": "sample",
+    "as_of": "2026-10-09T08:30:00+05:30",
+    "latest_observation_date": "2026-10-03",
+    "sources": [],
+    "trust": {
+      "score": 30.0,
+      "label": "Insufficient",
+      "calibrated": false
+    },
+    "warnings": [],
+    "llm_mode": "rule_based"
+  },
+  "_example": true
+}

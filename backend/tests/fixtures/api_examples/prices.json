@@ -1,0 +1,34 @@
+{
+  "observations": [
+    {
+      "date": "2026-10-08",
+      "crop_id": "tomato",
+      "mandi_id": "Vashi",
+      "min_price": 1800.0,
+      "modal_price": 2000.0,
+      "max_price": 2200.0,
+      "arrivals_quintals": 500.0,
+      "data_origin": "sample"
+    }
+  ],
+  "meta": {
+    "data_mode": "sample",
+    "as_of": "2026-10-09T08:30:00+05:30",
+    "latest_observation_date": "2026-10-08",
+    "sources": [
+      {
+        "name": "data.gov.in",
+        "origin": "cached",
+        "fetched_at": "2026-10-08T20:00:00Z"
+      }
+    ],
+    "trust": {
+      "score": 72.0,
+      "label": "High",
+      "calibrated": false
+    },
+    "warnings": [],
+    "llm_mode": "rule_based"
+  },
+  "_example": true
+}

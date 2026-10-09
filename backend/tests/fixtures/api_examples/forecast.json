@@ -1,0 +1,36 @@
+{
+  "forecasts": [
+    {
+      "date": "2026-10-09",
+      "horizon": 1,
+      "p10": 1900.0,
+      "p50": 2050.0,
+      "p90": 2200.0
+    }
+  ],
+  "method": "baseline_ewma_damped_trend",
+  "calibrated": false,
+  "diagnostics": {
+    "mae": 100
+  },
+  "meta": {
+    "data_mode": "sample",
+    "as_of": "2026-10-09T08:30:00+05:30",
+    "latest_observation_date": "2026-10-08",
+    "sources": [
+      {
+        "name": "data.gov.in",
+        "origin": "cached",
+        "fetched_at": "2026-10-08T20:00:00Z"
+      }
+    ],
+    "trust": {
+      "score": 72.0,
+      "label": "High",
+      "calibrated": false
+    },
+    "warnings": [],
+    "llm_mode": "rule_based"
+  },
+  "_example": true
+}

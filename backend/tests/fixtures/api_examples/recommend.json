@@ -1,0 +1,88 @@
+{
+  "action": "WAIT_N_DAYS",
+  "headline_key": "rec.wait_n_days",
+  "params": {
+    "days": 3,
+    "mandi": "Vashi"
+  },
+  "confidence": "Moderate",
+  "expected_gain_per_q": {
+    "p10": 120.0,
+    "p50": 420.0,
+    "p90": 690.0
+  },
+  "expected_total": {
+    "p50": 21000.0,
+    "unit": "INR"
+  },
+  "reference": {
+    "mandi": "Vashi",
+    "day": 0,
+    "nr_p50": 1920.0
+  },
+  "best": {
+    "mandi": "Vashi",
+    "day": 3,
+    "nr_p10": 1800.0,
+    "nr_p50": 2340.0,
+    "nr_p90": 2500.0
+  },
+  "split_plan": null,
+  "cost_of_waiting": [
+    {
+      "day": 0,
+      "gain_p50": 0.0,
+      "gain_p10": 0.0,
+      "gain_p90": 0.0
+    },
+    {
+      "day": 3,
+      "gain_p50": 420.0
+    }
+  ],
+  "drivers": {
+    "price_effect": 500.0,
+    "spoilage": -50.0,
+    "storage": -10.0,
+    "transport": 0.0,
+    "commission": -20.0
+  },
+  "reasons": [
+    {
+      "key": "reason.price_up",
+      "params": {
+        "pct": 8
+      }
+    }
+  ],
+  "flags": [
+    {
+      "code": "ARRIVAL_SURGE",
+      "severity": "warn",
+      "evidence": {}
+    }
+  ],
+  "assumptions": [
+    "Spoilage parameters are default estimates"
+  ],
+  "meta": {
+    "data_mode": "sample",
+    "as_of": "2026-10-09T08:30:00+05:30",
+    "latest_observation_date": "2026-10-08",
+    "sources": [
+      {
+        "name": "data.gov.in",
+        "origin": "cached",
+        "fetched_at": "2026-10-08T20:00:00Z"
+      }
+    ],
+    "trust": {
+      "score": 72.0,
+      "label": "High",
+      "calibrated": false
+    },
+    "warnings": [],
+    "llm_mode": "rule_based"
+  },
+  "_example": true
+}

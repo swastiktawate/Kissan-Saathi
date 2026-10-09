@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "db": "ok",
+  "sources": {
+    "datagov": "ok",
+    "weather": "ok",
+    "osrm": "unconfigured",
+    "llm": "unconfigured"
+  },
+  "data_mode": "sample",
+  "_example": true
+}
