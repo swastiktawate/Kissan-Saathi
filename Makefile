@@ -7,7 +7,7 @@ UVICORN := $(VENV_BIN)/uvicorn
 PYTEST := $(VENV_BIN)/pytest
 
 setup:
-	py -m venv venv
+	py -3.11 -m venv venv
 	$(PIP) install -r backend/requirements.txt
 
 seed:

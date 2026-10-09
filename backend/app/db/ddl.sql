@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS ingestion_runs (
 CREATE TABLE IF NOT EXISTS backtest_runs (
     run_id VARCHAR PRIMARY KEY,
     crop_id VARCHAR,
-    window INTEGER,
+    "window" INTEGER,
     strategy_params JSON,
     results JSON,
     data_origin_summary VARCHAR,
