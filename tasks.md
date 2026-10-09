@@ -9,3 +9,6 @@
 - [x] T07 — Data cleaning, normalisation, outlier flagging and load pipeline
 - [x] T08 — Historical series processing and feature store
 - [x] T09 — Baseline forecast service with P10/P50/P90 and diagnostics
+- [x] T10 — Data Trust Score service
+- [x] T11 — Net-return engine, transport model and pooling math
+- [x] T12 — Risk flag engine, Price Wave Radar and policy-event source
