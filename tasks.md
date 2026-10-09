@@ -20,3 +20,6 @@
 - [x] T18 — Farmer dashboard, crop selection and input flow
 - [x] T19 — Forecast chart and mandi comparison UI
 - [x] T20 — Scenario controls, cost-of-waiting view, risk chips and explanation UI
+- [x] T21 — Chat UI, live-API wiring, multilingual packs, and voice
+- [x] T22 — Offline-first PWA behaviour
+- [x] T23 — Backtest engine, endpoint, and Insights screen

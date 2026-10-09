@@ -14,7 +14,7 @@ export default function BottomNav() {
             <Link to="/chat" className={`flex flex-col items-center ${loc === '/chat' ? 'text-stone-900 font-bold' : ''}`}>
                 <span>Chat</span>
             </Link>
-            <Link to="/detail" className={`flex flex-col items-center ${loc === '/detail' ? 'text-stone-900 font-bold' : ''}`}>
+            <Link to="/insights" className={`flex flex-col items-center ${loc === '/insights' ? 'text-stone-900 font-bold' : ''}`}>
                 <span>Insights</span>
             </Link>
         </div>
