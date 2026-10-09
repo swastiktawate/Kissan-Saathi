@@ -15,3 +15,6 @@
 - [x] T13 — Mandi comparison, recommendation engine, and split-sale plan
 - [x] T14 — Cost-of-waiting curve and what-if scenario engine
 - [x] T15 — FastAPI v1 endpoints, meta envelope, and error handling
+- [x] T16 — AI assistant: provider abstraction, controlled tool calling, and guardrails
+- [x] T17 — Frontend scaffold: Vite + React + Tailwind, API client with mocks, i18n
+- [x] T18 — Farmer dashboard, crop selection and input flow

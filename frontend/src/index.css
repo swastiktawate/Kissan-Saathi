@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme('colors.canvas');
+  color: theme('colors.textMain');
+  margin: 0;
+  font-family: sans-serif;
+}

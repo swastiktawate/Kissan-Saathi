@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.api import health, meta, recommend, whatif
+from backend.app.api import health, meta, recommend, whatif, chat
 from backend.app.config import settings
 
 app = FastAPI(title="Kisan Saathi API")
@@ -16,3 +16,4 @@ app.include_router(health.router, prefix="/api/v1")
 app.include_router(meta.router, prefix="/api/v1")
 app.include_router(recommend.router, prefix="/api/v1")
 app.include_router(whatif.router, prefix="/api/v1")
+app.include_router(chat.router, prefix="/api/v1")
