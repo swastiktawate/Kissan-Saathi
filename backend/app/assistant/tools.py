@@ -1,7 +1,8 @@
-import json
-from backend.app.services.recommend import recommend_action
-from backend.app.services.whatif import run_whatif_scenario
 import datetime
+import json
+
+from backend.app.services.recommend import recommend_action
+
 
 async def execute_tool(tool_name: str, arguments: dict):
     origin = datetime.date.today().isoformat()

@@ -1,6 +1,7 @@
 import os
 import shutil
 
+
 def seed_sample():
     os.makedirs('data/raw', exist_ok=True)
     

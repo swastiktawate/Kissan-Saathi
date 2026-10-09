@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.pooling import calculate_farmer_pool
+
 
 def test_farmer_pool():
     farmers = [{"id": 1, "qty": 10}, {"id": 2, "qty": 40}]

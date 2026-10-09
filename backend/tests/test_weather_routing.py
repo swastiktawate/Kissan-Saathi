@@ -1,7 +1,10 @@
-import pytest
 from unittest.mock import patch
-from backend.app.ingestion.routing import get_distance
+
+import pytest
+
 from backend.app.config import settings
+from backend.app.ingestion.routing import get_distance
+
 
 @pytest.mark.asyncio
 @patch('backend.app.ingestion.routing.fetch_osrm_distance')

@@ -1,5 +1,7 @@
 import pytest
+
 from backend.app.services.compare import compare_mandis
+
 
 @pytest.mark.asyncio
 async def test_compare_mandis():

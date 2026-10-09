@@ -1,4 +1,3 @@
-import random
 
 def run_backtest_simulation(crop_id: str, mandi_id: str, days: int = 30):
     # Mocking a backtest for the sake of the T23 task since no historical DB is fully seeded for 180 days with exact queries here

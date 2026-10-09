@@ -1,5 +1,7 @@
-from pydantic_settings import BaseSettings
 from typing import Literal
+
+from pydantic_settings import BaseSettings
+
 
 class Settings(BaseSettings):
     DATA_GOV_API_KEY: str = ""

@@ -1,6 +1,8 @@
 import pytest
+
 from backend.app.assistant.agent import run_agent
 from backend.app.assistant.guardrails import numeric_consistency_check
+
 
 @pytest.mark.asyncio
 async def test_rule_based_fallback():

@@ -1,8 +1,11 @@
-import os
-import httpx
-import json
 import datetime
+import json
+import os
+
+import httpx
+
 from backend.app.config import settings
+
 
 async def fetch_datagov_prices(state: str, market: str, commodity: str):
     if not settings.DATA_GOV_API_KEY or not settings.DATA_GOV_RESOURCE_ID:

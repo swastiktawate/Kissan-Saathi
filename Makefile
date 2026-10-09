@@ -21,7 +21,9 @@ run-web:
 	cd frontend && npm run dev
 
 test:
-	$(PYTEST) backend/tests/
+	$(PYTEST) backend/tests/ -v
+	cd frontend && npm test
 
 lint:
-	@echo "Linting (to be implemented)"
+	$(VENV_BIN)/ruff check backend/
+	cd frontend && npm run lint

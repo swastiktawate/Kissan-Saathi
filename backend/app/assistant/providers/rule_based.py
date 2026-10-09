@@ -1,5 +1,7 @@
-from backend.app.assistant.providers.base import BaseProvider
 import re
+
+from backend.app.assistant.providers.base import BaseProvider
+
 
 class RuleBasedProvider(BaseProvider):
     async def chat(self, messages, tools):

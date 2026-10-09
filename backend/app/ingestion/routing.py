@@ -1,6 +1,8 @@
 import httpx
+
 from backend.app.config import settings
 from backend.app.db.connection import get_db_connection
+
 
 async def fetch_osrm_distance(lat1, lon1, lat2, lon2):
     url = f"{settings.OSRM_BASE_URL}/route/v1/driving/{lon1},{lat1};{lon2},{lat2}"

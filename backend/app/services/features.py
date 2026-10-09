@@ -1,5 +1,7 @@
 import pandas as pd
+
 from backend.app.services.series import get_series
+
 
 def get_features(crop_id: str, mandi_id: str, origin_date: str) -> pd.DataFrame:
     df = get_series(crop_id, mandi_id, origin_date)

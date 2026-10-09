@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.trust import calculate_trust_score
+
 
 def test_trust_score_fresh():
     res = calculate_trust_score(0, 0.0, 180, 0.1, "live")

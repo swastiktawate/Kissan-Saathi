@@ -1,6 +1,9 @@
 import json
+
 import duckdb
+
 from backend.app.config import settings
+
 
 def init_db():
     conn = duckdb.connect(settings.DUCKDB_PATH)

@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.risk_flags import evaluate_risk_flags
+
 
 def test_risk_flags():
     # Only triggers on edge cases

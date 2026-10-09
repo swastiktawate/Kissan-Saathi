@@ -23,3 +23,5 @@
 - [x] T21 — Chat UI, live-API wiring, multilingual packs, and voice
 - [x] T22 — Offline-first PWA behaviour
 - [x] T23 — Backtest engine, endpoint, and Insights screen
+- [x] T24 — Automated test suite, integration tests and quality gates
+- [x] T25 — Demo data, end-to-end validation, polish, deployment notes and presentation readiness

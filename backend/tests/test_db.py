@@ -1,7 +1,9 @@
 import os
+
 import duckdb
-import pytest
+
 from backend.app.config import settings
+
 
 def test_db_initialization():
     # Use in-memory for testing or a test db

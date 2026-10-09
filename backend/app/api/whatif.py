@@ -1,7 +1,9 @@
+import datetime
+
 from fastapi import APIRouter
 from pydantic import BaseModel
+
 from backend.app.services.whatif import run_whatif_scenario
-import datetime
 
 router = APIRouter()
 

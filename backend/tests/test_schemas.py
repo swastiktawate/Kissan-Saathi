@@ -1,11 +1,20 @@
-import os
 import json
-import pytest
+import os
+
 from backend.app.schemas import (
-    HealthResponse, PricesResponse, ForecastResponse, TrustResponse,
-    CompareResponse, RecommendResponse, WhatIfResponse, RiskResponse,
-    WeatherRiskResponse, PoolResponse, ChatResponse, BacktestResponse,
-    PolicyEventsResponse
+    BacktestResponse,
+    ChatResponse,
+    CompareResponse,
+    ForecastResponse,
+    HealthResponse,
+    PolicyEventsResponse,
+    PoolResponse,
+    PricesResponse,
+    RecommendResponse,
+    RiskResponse,
+    TrustResponse,
+    WeatherRiskResponse,
+    WhatIfResponse,
 )
 
 FIXTURE_DIR = os.path.join(os.path.dirname(__file__), 'fixtures', 'api_examples')

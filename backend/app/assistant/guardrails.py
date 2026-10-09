@@ -1,5 +1,6 @@
 import re
 
+
 def numeric_consistency_check(llm_draft: str, tool_results: list) -> str:
     numbers_in_draft = re.findall(r"\b\d+(?:\.\d+)?\b", llm_draft)
     tool_text = " ".join([str(res) for res in tool_results])

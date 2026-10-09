@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.cost_of_waiting import calculate_cost_of_waiting
+
 
 def test_cost_of_waiting_decomposition():
     all_results = [

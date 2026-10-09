@@ -1,6 +1,8 @@
 from enum import Enum
-from typing import List, Optional, Any, Dict, Union
+from typing import Any, Dict, List, Optional, Union
+
 from pydantic import BaseModel, Field
+
 
 class DataOrigin(str, Enum):
     live = "live"
@@ -47,15 +49,15 @@ class Meta(BaseModel):
     data_mode: str
     as_of: str
     latest_observation_date: str
-    sources: List[SourceMeta]
+    sources: list[SourceMeta]
     trust: TrustMeta
-    warnings: List[str]
-    llm_mode: Optional[str] = None
+    warnings: list[str]
+    llm_mode: str | None = None
 
 class HealthResponse(BaseModel):
     status: str
     db: str
-    sources: Dict[str, str]
+    sources: dict[str, str]
     data_mode: str
 
 class MetaResponse(BaseModel):
@@ -68,11 +70,11 @@ class PriceObservation(BaseModel):
     min_price: float
     modal_price: float
     max_price: float
-    arrivals_quintals: Optional[float]
+    arrivals_quintals: float | None
     data_origin: str
 
 class PricesResponse(BaseModel):
-    observations: List[PriceObservation]
+    observations: list[PriceObservation]
     meta: Meta
 
 class ForecastPoint(BaseModel):
@@ -83,17 +85,17 @@ class ForecastPoint(BaseModel):
     p90: float
 
 class ForecastResponse(BaseModel):
-    forecasts: List[ForecastPoint]
+    forecasts: list[ForecastPoint]
     method: str
     calibrated: bool
-    diagnostics: Optional[Dict[str, Any]]
+    diagnostics: dict[str, Any] | None
     meta: Meta
 
 class TrustResponse(BaseModel):
     score: float
     label: str
-    components: Dict[str, float]
-    reasons: List[str]
+    components: dict[str, float]
+    reasons: list[str]
     meta: Meta
 
 class CompareOption(BaseModel):
@@ -112,42 +114,42 @@ class CompareOption(BaseModel):
     is_best: bool
 
 class CompareResponse(BaseModel):
-    options: List[CompareOption]
+    options: list[CompareOption]
     meta: Meta
 
 class Reason(BaseModel):
     key: str
-    params: Dict[str, Any]
+    params: dict[str, Any]
 
 class RiskFlag(BaseModel):
     code: str
     severity: str
-    evidence: Dict[str, Any]
+    evidence: dict[str, Any]
 
 class RecommendResponse(BaseModel):
     action: str
     headline_key: str
-    params: Dict[str, Any]
+    params: dict[str, Any]
     confidence: str
-    expected_gain_per_q: Dict[str, float]
-    expected_total: Dict[str, Any]
-    reference: Dict[str, Any]
-    best: Dict[str, Any]
-    split_plan: Optional[Dict[str, Any]]
-    cost_of_waiting: List[Dict[str, Any]]
-    drivers: Dict[str, float]
-    reasons: List[Reason]
-    flags: List[RiskFlag]
-    assumptions: List[str]
+    expected_gain_per_q: dict[str, float]
+    expected_total: dict[str, Any]
+    reference: dict[str, Any]
+    best: dict[str, Any]
+    split_plan: dict[str, Any] | None
+    cost_of_waiting: list[dict[str, Any]]
+    drivers: dict[str, float]
+    reasons: list[Reason]
+    flags: list[RiskFlag]
+    assumptions: list[str]
     meta: Meta
 
 class WhatIfRequestScenario(BaseModel):
-    transport_multiplier: Optional[float] = 1.0
-    arrivals_change_pct: Optional[float] = 0.0
-    price_shock_pct: Optional[float] = 0.0
-    applies_to: Optional[str] = "future"
-    quantity_q: Optional[float] = None
-    risk_setting: Optional[str] = None
+    transport_multiplier: float | None = 1.0
+    arrivals_change_pct: float | None = 0.0
+    price_shock_pct: float | None = 0.0
+    applies_to: str | None = "future"
+    quantity_q: float | None = None
+    risk_setting: str | None = None
 
 class RecommendRequest(BaseModel):
     crop: str = Field(..., min_length=1)
@@ -163,18 +165,18 @@ class WhatIfRequest(BaseModel):
 class WhatIfResponse(BaseModel):
     baseline: RecommendResponse
     scenario: RecommendResponse
-    delta: Dict[str, Any]
-    assumptions: List[str]
+    delta: dict[str, Any]
+    assumptions: list[str]
     meta: Meta
 
 class RiskResponse(BaseModel):
-    flags: List[RiskFlag]
-    radar: Dict[str, Any]
+    flags: list[RiskFlag]
+    radar: dict[str, Any]
     meta: Meta
 
 class WeatherRiskResponse(BaseModel):
-    daily_precip: List[Dict[str, Any]]
-    flag: Optional[RiskFlag]
+    daily_precip: list[dict[str, Any]]
+    flag: RiskFlag | None
     meta: Meta
 
 class FarmerInput(BaseModel):
@@ -183,36 +185,36 @@ class FarmerInput(BaseModel):
 class PoolRequest(BaseModel):
     mandi: str
     crop: str
-    farmers: List[FarmerInput]
-    vehicle: Optional[str] = None
+    farmers: list[FarmerInput]
+    vehicle: str | None = None
 
 class PoolResponse(BaseModel):
-    shares: List[Dict[str, Any]]
+    shares: list[dict[str, Any]]
     saving: float
     meta: Meta
 
 class ChatRequest(BaseModel):
     message: str
     language: str
-    session_context: Optional[Dict[str, Any]] = None
+    session_context: dict[str, Any] | None = None
 
 class ChatResponse(BaseModel):
     reply: str
     language: str
-    tools_used: List[str]
-    evidence: Dict[str, Any]
-    suggested_actions: List[str]
+    tools_used: list[str]
+    evidence: dict[str, Any]
+    suggested_actions: list[str]
     meta: Meta
 
 class BacktestResponse(BaseModel):
-    metrics: Dict[str, Any]
-    caveats: List[str]
+    metrics: dict[str, Any]
+    caveats: list[str]
     data_origin_summary: str
     meta: Meta
 
 class PolicyEventsResponse(BaseModel):
     connected: bool
-    events: Optional[List[Dict[str, Any]]] = None
+    events: list[dict[str, Any]] | None = None
     meta: Meta
 
 class ErrorDetail(BaseModel):

@@ -1,6 +1,7 @@
-import pytest
 import datetime
+
 from backend.app.services.forecast import generate_forecast
+
 
 def test_generate_forecast():
     origin = datetime.date.today().isoformat()

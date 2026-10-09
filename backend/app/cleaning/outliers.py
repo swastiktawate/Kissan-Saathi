@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def flag_outliers(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df

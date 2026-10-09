@@ -1,5 +1,7 @@
 import pandas as pd
+
 from backend.app.db.connection import get_db_connection
+
 
 def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:

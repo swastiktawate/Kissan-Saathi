@@ -1,5 +1,6 @@
-from backend.app.services.recommend import recommend_action
 from backend.app.services.cost_of_waiting import calculate_cost_of_waiting
+from backend.app.services.recommend import recommend_action
+
 
 async def run_whatif_scenario(base_params: dict, scenario_params: dict) -> dict:
     

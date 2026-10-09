@@ -1,15 +1,18 @@
 import asyncio
-import sys
-import os
-import uuid
 import datetime
+import os
+import sys
+import uuid
+
 import pandas as pd
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from backend.app.ingestion.orchestrator import orchestrate_ingestion
 from backend.app.cleaning.normalize import normalize_data
-from backend.app.cleaning.validate import validate_data
 from backend.app.cleaning.outliers import flag_outliers
+from backend.app.cleaning.validate import validate_data
 from backend.app.db.connection import get_db_connection
+from backend.app.ingestion.orchestrator import orchestrate_ingestion
+
 
 async def main():
     result = await orchestrate_ingestion("Maharashtra", "Vashi", "Tomato")

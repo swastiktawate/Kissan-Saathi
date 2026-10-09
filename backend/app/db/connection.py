@@ -1,5 +1,7 @@
 import duckdb
+
 from backend.app.config import settings
+
 
 def get_db():
     conn = duckdb.connect(settings.DUCKDB_PATH)

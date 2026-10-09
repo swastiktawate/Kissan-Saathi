@@ -1,7 +1,10 @@
-import pytest
 from unittest.mock import patch
-from backend.app.ingestion.orchestrator import orchestrate_ingestion
+
+import pytest
+
 from backend.app.config import settings
+from backend.app.ingestion.orchestrator import orchestrate_ingestion
+
 
 @pytest.mark.asyncio
 @patch('backend.app.ingestion.orchestrator.fetch_datagov_prices')

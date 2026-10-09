@@ -1,5 +1,7 @@
 import pandas as pd
+
 from backend.app.db.connection import get_db_connection
+
 
 def get_series(crop_id: str, mandi_id: str, end_date: str) -> pd.DataFrame:
     conn = get_db_connection()

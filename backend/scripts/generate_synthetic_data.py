@@ -1,9 +1,11 @@
-import os
-import random
 import argparse
 import datetime
-import pandas as pd
+import os
+import random
+
 import numpy as np
+import pandas as pd
+
 
 def generate_synthetic_data(args):
     # Set fixed seed

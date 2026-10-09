@@ -1,9 +1,9 @@
-import pandas as pd
 from backend.app.db.connection import get_db_connection
-from backend.app.services.forecast import generate_forecast
-from backend.app.services.net_return import calculate_scenarios
 from backend.app.ingestion.routing import get_distance
 from backend.app.ingestion.weather import get_weather
+from backend.app.services.forecast import generate_forecast
+from backend.app.services.net_return import calculate_scenarios
+
 
 async def compare_mandis(crop_id: str, home_mandi_id: str, quantity_q: float, origin_date: str, horizon_days: int = 7) -> dict:
     conn = get_db_connection()

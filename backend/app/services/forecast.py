@@ -1,7 +1,8 @@
-import pandas as pd
 import numpy as np
-from backend.app.services.series import get_series
+
 from backend.app.config import settings
+from backend.app.services.series import get_series
+
 
 def generate_forecast(crop_id: str, mandi_id: str, origin_date: str, horizon_days: int = 7) -> list:
     df = get_series(crop_id, mandi_id, origin_date)

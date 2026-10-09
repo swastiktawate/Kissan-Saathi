@@ -1,5 +1,7 @@
 import pytest
+
 from backend.app.services.whatif import run_whatif_scenario
+
 
 @pytest.mark.asyncio
 async def test_run_whatif():

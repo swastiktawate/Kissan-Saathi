@@ -1,5 +1,7 @@
-import pandas as pd
 import datetime
+
+import pandas as pd
+
 
 def validate_data(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:

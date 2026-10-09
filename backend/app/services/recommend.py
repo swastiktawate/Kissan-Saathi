@@ -1,5 +1,7 @@
 import math
+
 from backend.app.services.compare import compare_mandis
+
 
 async def recommend_action(crop_id: str, home_mandi_id: str, quantity_q: float, origin_date: str, risk_setting: str = "balanced", horizon_days: int = 7, trust_label: str = "High") -> dict:
     

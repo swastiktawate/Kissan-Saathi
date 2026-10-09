@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.radar import check_price_wave_radar
+
 
 def test_radar():
     neighbors = [{"id": "n1", "price": 80, "historical_corr": 0.8}]

@@ -1,8 +1,10 @@
-import os
-import pandas as pd
-from backend.scripts.generate_synthetic_data import generate_synthetic_data
 import argparse
-from unittest.mock import patch
+import os
+
+import pandas as pd
+
+from backend.scripts.generate_synthetic_data import generate_synthetic_data
+
 
 def test_synthetic_generation():
     args = argparse.Namespace(stale_series=False, sparse_series=False)

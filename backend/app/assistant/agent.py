@@ -1,11 +1,14 @@
 import asyncio
-import datetime
-from backend.app.assistant.providers.rule_based import RuleBasedProvider
+
+from backend.app.assistant.guardrails import (
+    enforce_trust_gate,
+    numeric_consistency_check,
+)
 from backend.app.assistant.providers.gemini import GeminiProvider
-from backend.app.assistant.providers.groq import GroqProvider
+from backend.app.assistant.providers.rule_based import RuleBasedProvider
 from backend.app.assistant.tools import execute_tool
-from backend.app.assistant.guardrails import numeric_consistency_check, enforce_trust_gate
 from backend.app.config import settings
+
 
 async def run_agent(message: str, language: str = "en"):
     provider_name = settings.LLM_PROVIDER

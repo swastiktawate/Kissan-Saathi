@@ -1,9 +1,12 @@
-import os
 import glob
 import json
+import os
+
 import pandas as pd
+
 from backend.app.config import settings
 from backend.app.ingestion.datagov import fetch_datagov_prices
+
 
 async def orchestrate_ingestion(state: str, market: str, commodity: str):
     if settings.DATA_MODE in ["auto", "live"]:

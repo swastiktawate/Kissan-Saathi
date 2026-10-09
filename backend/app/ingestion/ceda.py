@@ -1,5 +1,7 @@
 import os
+
 import pandas as pd
+
 
 def load_ceda_data(filepath="data/sample/ceda_history.csv"):
     if not os.path.exists(filepath):

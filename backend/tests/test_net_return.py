@@ -1,5 +1,5 @@
-import pytest
 from backend.app.services.net_return import calculate_net_return
+
 
 def test_worked_example():
     res = calculate_net_return(

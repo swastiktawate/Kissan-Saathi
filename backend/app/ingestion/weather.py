@@ -1,5 +1,7 @@
 import httpx
+
 from backend.app.db.connection import get_db_connection
+
 
 async def fetch_open_meteo(lat: float, lon: float, location_id: str):
     url = "https://api.open-meteo.com/v1/forecast"

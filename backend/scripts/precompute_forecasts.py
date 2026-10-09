@@ -1,11 +1,13 @@
 import datetime
-import uuid
-import sys
 import os
+import sys
+import uuid
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from backend.app.db.connection import get_db_connection
 from backend.app.services.forecast import generate_forecast
+
 
 def precompute_forecasts():
     conn = get_db_connection()

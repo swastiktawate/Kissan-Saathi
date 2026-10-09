@@ -1,5 +1,6 @@
 from backend.app.services.backtest import run_backtest_simulation
 
+
 def test_backtest_no_lookahead():
     res = run_backtest_simulation("tomato", "vashi", 30)
     assert "metrics" in res

@@ -1,9 +1,11 @@
+import datetime
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-import datetime
-from backend.app.services.recommend import recommend_action
-from backend.app.services.cost_of_waiting import calculate_cost_of_waiting
+
 from backend.app.config import settings
+from backend.app.services.cost_of_waiting import calculate_cost_of_waiting
+from backend.app.services.recommend import recommend_action
 
 router = APIRouter()
 

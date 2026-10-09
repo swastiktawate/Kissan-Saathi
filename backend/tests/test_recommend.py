@@ -1,5 +1,7 @@
 import pytest
+
 from backend.app.services.recommend import recommend_action
+
 
 @pytest.mark.asyncio
 async def test_recommend_action_insufficient_trust():

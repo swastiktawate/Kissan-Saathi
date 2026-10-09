@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.api import health, meta, recommend, whatif, chat, backtest
-from backend.app.config import settings
+
+from backend.app.api import backtest, chat, health, meta, recommend, whatif
 
 app = FastAPI(title="Kisan Saathi API")
 
