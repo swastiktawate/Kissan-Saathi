@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #F7F5F0;
-  --color-textMain: #1c1917;
-  --color-accent: #bfdbfe;
+  --color-canvas: #f8fafc; /* Very light gray/blue for app bg */
+  --color-textMain: #0f172a;
+  --color-accent: #15803d; /* Tailwind green-700 */
+  --color-accent-light: #dcfce7; /* Tailwind green-100 */
 }
 
 body {
   background-color: var(--color-canvas);
   color: var(--color-textMain);
   margin: 0;
-  font-family: sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }

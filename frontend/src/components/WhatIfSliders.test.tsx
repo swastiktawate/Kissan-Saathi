@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import WhatIfSliders from './WhatIfSliders';
-import * as client from '../api/client';
 
 vi.mock('../api/client', () => ({
     runWhatIf: vi.fn().mockResolvedValue({

@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     
     BHASHINI_API_KEY: str = ""
     BHASHINI_USER_ID: str = ""
+    SARVAM_API_KEY: str = ""
 
     LLM_PROVIDER: str = "gemini"
     LLM_MODEL: str = ""

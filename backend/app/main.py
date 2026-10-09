@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.api import backtest, chat, health, meta, recommend, whatif
+from backend.app.api import backtest, chat, health, meta, recommend, whatif, transcribe
 
 app = FastAPI(title="Kisan Saathi API")
 
@@ -18,3 +18,9 @@ app.include_router(recommend.router, prefix="/api/v1")
 app.include_router(whatif.router, prefix="/api/v1")
 app.include_router(chat.router, prefix="/api/v1")
 app.include_router(backtest.router, prefix="/api/v1")
+app.include_router(transcribe.router, prefix="/api/v1")
+
+from backend.app.api import negotiation, policy, pooling
+app.include_router(negotiation.router, prefix="/api/v1")
+app.include_router(policy.router, prefix="/api/v1")
+app.include_router(pooling.router, prefix="/api/v1")

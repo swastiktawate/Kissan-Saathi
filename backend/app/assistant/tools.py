@@ -15,6 +15,8 @@ async def execute_tool(tool_name: str, arguments: dict):
             risk_setting=arguments.get("risk_setting", "balanced"),
             horizon_days=arguments.get("horizon_days", 7)
         )
+        if "all_results" in res:
+            del res["all_results"]
         return json.dumps(res)
     elif tool_name == "run_whatif":
         # simple mock

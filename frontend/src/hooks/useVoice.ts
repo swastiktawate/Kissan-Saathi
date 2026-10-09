@@ -1,56 +1,77 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-export function useVoice(lang: string = 'en-US') {
+export function useVoice(lang: string = 'en') {
     const [isListening, setIsListening] = useState(false);
     const [transcript, setTranscript] = useState('');
     const [supported, setSupported] = useState(true);
-    const recognition = useRef<any>(null);
+    
+    const mediaRecorder = useRef<MediaRecorder | null>(null);
+    const audioChunks = useRef<Blob[]>([]);
 
     useEffect(() => {
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             setSupported(false);
-            return;
         }
-        
-        const SpeechRec = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        recognition.current = new SpeechRec();
-        recognition.current.continuous = false;
-        recognition.current.interimResults = false;
-        
-        recognition.current.onresult = (event: any) => {
-            const current = event.resultIndex;
-            const res = event.results[current][0].transcript;
-            setTranscript(res);
-            setIsListening(false);
-        };
-        
-        recognition.current.onend = () => {
-            setIsListening(false);
-        };
-        
-        recognition.current.onerror = () => {
-            setIsListening(false);
-        };
     }, []);
 
-    useEffect(() => {
-        if (recognition.current) {
-            recognition.current.lang = lang === 'hi' ? 'hi-IN' : lang === 'mr' ? 'mr-IN' : 'en-US';
-        }
-    }, [lang]);
-
-    const startListening = () => {
-        if (supported && recognition.current) {
-            setTranscript('');
+    const startListening = async () => {
+        if (!supported) return;
+        setTranscript('');
+        
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+            
+            audioChunks.current = [];
+            recorder.ondataavailable = (e) => {
+                if (e.data.size > 0) audioChunks.current.push(e.data);
+            };
+            
+            recorder.onstop = async () => {
+                const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' });
+                
+                // Stop all tracks to release microphone
+                stream.getTracks().forEach(track => track.stop());
+                
+                await transcribeAudio(audioBlob);
+            };
+            
+            mediaRecorder.current = recorder;
+            recorder.start();
             setIsListening(true);
-            recognition.current.start();
+            
+        } catch (err) {
+            console.error("Mic error:", err);
+            setIsListening(false);
         }
     };
 
     const stopListening = () => {
-        if (supported && recognition.current) {
+        if (mediaRecorder.current && mediaRecorder.current.state === 'recording') {
+            mediaRecorder.current.stop();
             setIsListening(false);
-            recognition.current.stop();
+        }
+    };
+    
+    const transcribeAudio = async (blob: Blob) => {
+        try {
+            const formData = new FormData();
+            formData.append('file', blob, 'audio.webm');
+            formData.append('language', lang);
+            
+            const res = await fetch('http://localhost:8000/api/v1/transcribe', {
+                method: 'POST',
+                body: formData,
+            });
+            
+            if (res.ok) {
+                const data = await res.json();
+                if (data.transcript) {
+                    setTranscript(data.transcript);
+                }
+            }
+        } catch (err) {
+            console.error("Transcription failed", err);
         }
     };
 

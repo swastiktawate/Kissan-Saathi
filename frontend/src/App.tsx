@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <OfflineBanner />
-      <div className="max-w-[360px] mx-auto bg-canvas min-h-screen relative pb-16 pt-6 shadow-lg">
+      <div className="max-w-[430px] mx-auto bg-white min-h-screen relative pb-16 shadow-xl">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/detail" element={<Detail />} />

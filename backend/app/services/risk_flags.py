@@ -59,4 +59,13 @@ def evaluate_risk_flags(context: dict) -> list:
             "as_of": as_of
         })
         
+    if context.get('policy_shock'):
+        flags.append({
+            "code": "POLICY_SHOCK",
+            "severity": "high",
+            "evidence": context['policy_shock'],
+            "source": "news_api",
+            "as_of": as_of
+        })
+        
     return flags
