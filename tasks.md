@@ -12,3 +12,6 @@
 - [x] T10 — Data Trust Score service
 - [x] T11 — Net-return engine, transport model and pooling math
 - [x] T12 — Risk flag engine, Price Wave Radar and policy-event source
+- [x] T13 — Mandi comparison, recommendation engine, and split-sale plan
+- [x] T14 — Cost-of-waiting curve and what-if scenario engine
+- [x] T15 — FastAPI v1 endpoints, meta envelope, and error handling
