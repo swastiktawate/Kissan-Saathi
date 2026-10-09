@@ -34,7 +34,7 @@ export default function InputSheet({ onSave }: { onSave: (p: any) => void }) {
                     <option value="balanced">{en.balanced}</option>
                     <option value="aggressive">{en.aggressive}</option>
                 </select>
-                <button onClick={handleSave} className="bg-accent text-textMain px-4 py-2 rounded">{en.save}</button>
+                <button onClick={handleSave} className="bg-stone-900 text-white px-4 py-2 rounded">{en.save}</button>
             </div>
         </div>
     );

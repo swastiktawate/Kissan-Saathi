@@ -19,12 +19,12 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="max-w-[360px] mx-auto min-h-screen flex flex-col">
+        <div className="flex flex-col">
             <div className="flex-1 p-4">
                 <h1 className="text-2xl font-bold mb-4">{en.greeting}</h1>
                 <div className="flex gap-2 mb-4">
-                    <span className="bg-stone-200 px-3 py-1 rounded-full text-sm">Tomato</span>
-                    <span className="bg-stone-200 px-3 py-1 rounded-full text-sm">Onion</span>
+                    <span className="bg-stone-200 px-3 py-1 rounded-sm text-sm">Tomato</span>
+                    <span className="bg-stone-200 px-3 py-1 rounded-sm text-sm">Onion</span>
                 </div>
                 
                 <h2 className="font-bold mb-2">{en.top_mandis}</h2>

@@ -17,3 +17,19 @@ export async function fetchRecommendation(params: any) {
     });
     return res.json();
 }
+
+export async function runWhatIf(scenario: any) {
+    if (USE_MOCKS) {
+        return {
+            baseline: { action: 'SELL_NOW', expected_gain: 100 },
+            scenario: { action: 'ANOTHER_MANDI', expected_gain: 100 - (scenario.transport_multiplier - 1)*100 },
+            delta: { action_change: true, nr_change: -((scenario.transport_multiplier - 1)*100) }
+        };
+    }
+    const res = await fetch('http://localhost:8000/api/v1/whatif', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ base: {}, scenario })
+    });
+    return res.json();
+}

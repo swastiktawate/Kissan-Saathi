@@ -1,10 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #F7F5F0;
+  --color-textMain: #1c1917;
+  --color-accent: #bfdbfe;
+}
 
 body {
-  background-color: theme('colors.canvas');
-  color: theme('colors.textMain');
+  background-color: var(--color-canvas);
+  color: var(--color-textMain);
   margin: 0;
   font-family: sans-serif;
 }

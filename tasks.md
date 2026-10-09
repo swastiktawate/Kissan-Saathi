@@ -18,3 +18,5 @@
 - [x] T16 — AI assistant: provider abstraction, controlled tool calling, and guardrails
 - [x] T17 — Frontend scaffold: Vite + React + Tailwind, API client with mocks, i18n
 - [x] T18 — Farmer dashboard, crop selection and input flow
+- [x] T19 — Forecast chart and mandi comparison UI
+- [x] T20 — Scenario controls, cost-of-waiting view, risk chips and explanation UI
