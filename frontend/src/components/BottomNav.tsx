@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Store, MessageCircle, BarChart3 } from 'lucide-react';
+import { Home, Store, MessageCircle, BarChart3, TrendingUp } from 'lucide-react';
 
 export default function BottomNav() {
     const loc = useLocation().pathname;
@@ -7,12 +7,13 @@ export default function BottomNav() {
     const navItems = [
         { to: '/', label: 'Home', icon: Home },
         { to: '/mandis', label: 'Mandis', icon: Store },
+        { to: '/predict', label: 'Forecast', icon: TrendingUp },
         { to: '/chat', label: 'Chat', icon: MessageCircle },
         { to: '/insights', label: 'Insights', icon: BarChart3 },
     ];
 
     return (
-        <div className="fixed bottom-0 w-full max-w-[430px] bg-white border-t border-stone-200 flex justify-around py-2 z-50">
+        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-stone-200 flex justify-around py-2 z-50">
             {navItems.map(item => {
                 const active = loc === item.to;
                 const Icon = item.icon;

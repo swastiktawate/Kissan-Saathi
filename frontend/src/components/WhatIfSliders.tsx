@@ -5,14 +5,27 @@ import { Settings2 } from 'lucide-react';
 export default function WhatIfSliders() {
     const [transport, setTransport] = useState(0);
     const [result, setResult] = useState<any>(null);
+    const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
     useEffect(() => {
+        const handleOnline = () => setIsOffline(false);
+        const handleOffline = () => setIsOffline(true);
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOffline) return;
         const timer = setTimeout(async () => {
             const res = await runWhatIf({ transport_multiplier: 1 + transport / 100 });
             setResult(res);
         }, 500);
         return () => clearTimeout(timer);
-    }, [transport]);
+    }, [transport, isOffline]);
 
     return (
         <div className="bg-white p-4 border border-stone-200 rounded-xl shadow-sm mb-6">
@@ -29,7 +42,8 @@ export default function WhatIfSliders() {
                 <input 
                     type="range" min="0" max="50" value={transport} 
                     onChange={(e) => setTransport(parseInt(e.target.value))} 
-                    className="w-full accent-green-600 h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer"
+                    disabled={isOffline}
+                    className={`w-full accent-green-600 h-1.5 bg-stone-200 rounded-lg appearance-none ${isOffline ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
                 />
             </div>
             

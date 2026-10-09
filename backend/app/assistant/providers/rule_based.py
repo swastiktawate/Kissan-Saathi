@@ -4,7 +4,7 @@ from backend.app.assistant.providers.base import BaseProvider
 
 
 class RuleBasedProvider(BaseProvider):
-    async def chat(self, messages, tools):
+    async def chat(self, messages, tools, language="en"):
         last_msg = messages[-1].get("content", "").lower()
         if re.search(r"sell.*today|wait", last_msg):
             # mock tool call to recommend

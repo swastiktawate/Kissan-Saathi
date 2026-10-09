@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useVoice } from '../hooks/useVoice';
-import { Mic, MicOff, Send, Bot, User, Sparkles } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useVoiceBot } from '../hooks/useVoiceBot';
+import { Mic, Send, Bot, User, Sparkles, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 export default function ChatPanel() {
@@ -9,11 +9,13 @@ export default function ChatPanel() {
     const [input, setInput] = useState('');
     const [language, setLanguage] = useState('en');
     const [loading, setLoading] = useState(false);
-    const { isListening, transcript, startListening, stopListening, supported, setTranscript } = useVoice(language);
+    
+    const { isRecording, isProcessing, toggleRecording } = useVoiceBot(language);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const [isOffline, setIsOffline] = useState(!navigator.onLine);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleOnline = () => setIsOffline(false);
@@ -29,14 +31,40 @@ export default function ChatPanel() {
     useEffect(() => {
         if (location.state?.initialMsg && messages.length === 0) {
             sendMsg(location.state.initialMsg);
-            // clear state so it doesn't fire again
-            window.history.replaceState({}, document.title)
+            navigate(location.pathname, { replace: true, state: {} });
+        } else if (location.state?.autoStartMic) {
+            if (!isRecording) {
+                // Short delay to allow UI to mount before triggering mic prompt
+                setTimeout(() => toggleRecording(), 100);
+            }
+            navigate(location.pathname, { replace: true, state: {} });
+        } else if (location.state?.voiceResponse) {
+            const vr = location.state.voiceResponse;
+            const userText = vr.user_text || vr.transcript || '🎤 Voice message';
+            const replyText = vr.reply || vr.reply_text || '';
+            
+            setMessages(prev => {
+                // Prevent duplicate appending if the state didn't actually clear due to React strict mode
+                const last = prev[prev.length - 1];
+                if (last && last.content === replyText) return prev;
+                return [
+                    ...prev,
+                    { role: 'user', content: userText },
+                    { role: 'assistant', content: replyText }
+                ];
+            });
+            
+            // Audio is natively played by useVoiceBot, but just in case:
+            if (vr.audio_base64 && !vr._played) {
+                const audio = new Audio(`data:audio/wav;base64,${vr.audio_base64}`);
+                audio.play().catch(e => console.error("Audio auto-play blocked", e));
+                vr._played = true; // Mark as played to prevent double play in strict mode
+            }
+            
+            // Clear the state so it doesn't trigger again on re-renders
+            navigate(location.pathname, { replace: true, state: {} });
         }
-    }, [location.state]);
-
-    useEffect(() => {
-        if (transcript) setInput(transcript);
-    }, [transcript]);
+    }, [location.state, navigate, location.pathname]);
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -55,7 +83,6 @@ export default function ChatPanel() {
         const newMsgs = [...messages, { role: 'user', content: text }];
         setMessages(newMsgs);
         setInput('');
-        setTranscript('');
         setLoading(true);
 
         try {
@@ -72,24 +99,6 @@ export default function ChatPanel() {
                 tools: data.tools_used,
                 mode: data.meta?.llm_mode
             }]);
-            
-            // Trigger Sarvam TTS
-            try {
-                const ttsRes = await fetch('http://localhost:8000/api/v1/synthesize', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text: data.reply, language })
-                });
-                if (ttsRes.ok) {
-                    const ttsData = await ttsRes.json();
-                    if (ttsData.audio_base64) {
-                        const audio = new Audio("data:audio/wav;base64," + ttsData.audio_base64);
-                        audio.play().catch(e => console.error("Audio auto-play prevented:", e));
-                    }
-                }
-            } catch (e) {
-                console.error("TTS failed", e);
-            }
         } catch {
             setMessages([...newMsgs, { role: 'assistant', content: 'Network error. Could not reach assistant.' }]);
         } finally {
@@ -186,7 +195,7 @@ export default function ChatPanel() {
                         </div>
                     </div>
                 ))}
-                {loading && (
+                {(loading || isProcessing) && (
                     <div className="flex gap-2">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center bg-stone-200 text-stone-600 shrink-0">
                             <Bot size={14} />
@@ -212,29 +221,34 @@ export default function ChatPanel() {
             {/* Input bar */}
             <div className="p-3 bg-white border-t border-stone-200">
                 <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-full px-3 py-1.5">
-                    {supported && (
-                        <button
-                            onClick={isListening ? stopListening : startListening}
-                            disabled={isOffline}
-                            className={`p-1.5 rounded-full transition-all disabled:opacity-50 ${
-                                isListening ? 'bg-red-500 text-white animate-pulse' : 'text-stone-500 hover:text-green-600'
-                            }`}
-                        >
-                            {isListening ? <MicOff size={18} /> : <Mic size={18} />}
-                        </button>
-                    )}
+                    <button
+                        onClick={toggleRecording}
+                        disabled={isOffline || isProcessing}
+                        className={`p-1.5 rounded-full transition-all disabled:opacity-50 ${
+                            isRecording ? 'bg-red-500 text-white animate-pulse' : 'text-stone-500 hover:text-green-600'
+                        }`}
+                    >
+                        {isProcessing ? (
+                            <Loader2 size={18} className="animate-spin text-green-600" />
+                        ) : isRecording ? (
+                            <Mic size={18} />
+                        ) : (
+                            <Mic size={18} />
+                        )}
+                    </button>
+                    
                     <input
                         type="text"
                         value={input}
                         onChange={e => setInput(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && sendMsg(input)}
-                        disabled={isOffline}
-                        placeholder={isOffline ? "Offline..." : "Kuch poochhiye..."}
+                        disabled={isOffline || isProcessing}
+                        placeholder={isOffline ? "Offline..." : isProcessing ? "Processing voice..." : "Kuch poochhiye..."}
                         className="flex-1 text-sm outline-none bg-transparent disabled:text-stone-400"
                     />
                     <button
                         onClick={() => sendMsg(input)}
-                        disabled={isOffline || !input.trim() || loading}
+                        disabled={isOffline || !input.trim() || loading || isProcessing}
                         className="bg-green-500 text-white p-2 rounded-full disabled:opacity-40 hover:bg-green-600 transition-all"
                     >
                         <Send size={16} />

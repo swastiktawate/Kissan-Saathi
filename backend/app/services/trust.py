@@ -15,14 +15,18 @@ def calculate_trust_score(
     raw_score = freshness + completeness + history + forecast + source
     
     reasons = []
+    score = round(raw_score)
     if days_since_last_fetch > 3:
         reasons.append("Data is stale (>3 days old).")
+    if days_since_last_fetch > 5:
+        reasons.append("Data is severely stale (>5 days old). Cap at 60.")
+        if score > 60:
+            score = 60
     if missing_ratio > 0.1:
         reasons.append("High missing data ratio.")
     if history_days < 90:
         reasons.append("Insufficient history (<90 days).")
         
-    score = round(raw_score)
     if data_origin in ['sample', 'synthetic']:
         if score > 60:
             score = 60
@@ -33,6 +37,9 @@ def calculate_trust_score(
     elif score >= 40:
         label = "Medium"
     else:
+        label = "Insufficient"
+        
+    if days_since_last_fetch > 5:
         label = "Insufficient"
         
     return {

@@ -35,7 +35,8 @@ async def transcribe_audio(
             "file": (file.filename or "audio.webm", content, file.content_type or "audio/webm")
         }
         data = {
-            "language_code": sarvam_lang
+            "language_code": sarvam_lang,
+            "model": "saaras:v3"
         }
         
         async with httpx.AsyncClient() as client:
@@ -79,16 +80,16 @@ async def synthesize_speech(req: SynthesizeRequest):
     }
     
     speaker_map = {
-        "hi-IN": "aarti_hi_customer",
-        "mr-IN": "mukul_mr_stories",
-        "pa-IN": "aarti_hi_customer", # fallback
-        "en-IN": "amelia_en_conversational"
+        "hi-IN": "ritu",
+        "mr-IN": "roopa",
+        "pa-IN": "ritu",
+        "en-IN": "kavya"
     }
     
     payload = {
         "inputs": [req.text[:500]], # limit text length for safety
         "target_language_code": sarvam_lang,
-        "speaker": speaker_map.get(sarvam_lang, "aarti_hi_customer"),
+        "speaker": speaker_map.get(sarvam_lang, "ritu"),
         "pitch": 0,
         "pace": 1.0,
         "loudness": 1.5,

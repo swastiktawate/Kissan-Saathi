@@ -18,14 +18,19 @@ class GeminiProvider(BaseProvider):
         self.model = genai.GenerativeModel("gemini-flash-lite-latest")
         logger.info("GeminiProvider initialized with model=gemini-flash-lite-latest")
 
-    async def chat(self, messages, tools):
+    async def chat(self, messages, tools, language="en"):
         """Send messages to Gemini and return structured response."""
         try:
             # Build conversation for Gemini
             system_prompt = (
                 "You are Kisan Sathi, a helpful agricultural assistant for Indian farmers. "
                 "You help farmers decide when and where to sell their crops. "
-                "Always answer in a friendly, concise way. "
+                f"CRITICAL: You MUST respond in the language code '{language}'. "
+                "If 'hi', reply in Hindi (Devanagari script). If 'mr', reply in Marathi (Devanagari script). "
+                "If 'pa', reply in Punjabi (Gurmukhi script). If 'en', reply in English. "
+                "Do NOT use 'Hinglish' or Romanized Hindi unless explicitly requested. "
+                "Respond conversationally and concisely. Never read out raw JSON. "
+                "Always answer in a friendly way. "
                 "When asked about prices or selling, use the available tools. "
                 "Always ground your answers in the tool results. Never fabricate numbers."
             )

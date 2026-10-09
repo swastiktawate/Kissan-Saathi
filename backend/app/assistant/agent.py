@@ -35,7 +35,7 @@ async def run_agent(message: str, language: str = "en"):
     try:
         async with asyncio.timeout(45.0):
             for round_num in range(4):
-                resp = await provider.chat(messages, tools=[])
+                resp = await provider.chat(messages, tools=[], language=language)
                 messages.append(resp)
 
                 if resp.get("tool_calls"):
@@ -58,7 +58,7 @@ async def run_agent(message: str, language: str = "en"):
         # Re-run with rule based
         try:
             provider = RuleBasedProvider()
-            resp = await provider.chat([{"role": "user", "content": message}], tools=[])
+            resp = await provider.chat([{"role": "user", "content": message}], tools=[], language=language)
             messages.append(resp)
             if resp.get("tool_calls"):
                 for tc in resp["tool_calls"]:
