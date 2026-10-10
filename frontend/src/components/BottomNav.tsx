@@ -1,15 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Store, MessageCircle, TrendingUp, BarChart3 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function BottomNav() {
     const loc = useLocation().pathname;
+    const { t } = useLanguage();
 
     const navItems = [
-        { to: '/', label: 'Home', icon: Home },
-        { to: '/mandis', label: 'Mandis', icon: Store },
-        { to: '/predict', label: 'Forecast', icon: TrendingUp },
-        { to: '/chat', label: 'Chat', icon: MessageCircle },
-        { to: '/insights', label: 'Insights', icon: BarChart3 },
+        { to: '/', label: t('nav_home'), icon: Home },
+        { to: '/mandis', label: t('nav_mandis'), icon: Store },
+        { to: '/predict', label: t('nav_forecast'), icon: TrendingUp },
+        { to: '/chat', label: t('nav_chat'), icon: MessageCircle },
+        { to: '/insights', label: t('nav_insights'), icon: BarChart3 },
     ];
 
     return (

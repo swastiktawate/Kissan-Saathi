@@ -11,6 +11,7 @@ import Predict from './pages/Predict';
 import ColdStorage from './pages/ColdStorage';
 import PoolingList from './pages/PoolingList';
 import PoolingCreate from './pages/PoolingCreate';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/cold-storage" element={<ColdStorage />} />
           <Route path="/pooling" element={<PoolingList />} />
           <Route path="/pooling/create" element={<PoolingCreate />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <BottomNav />
       </div>

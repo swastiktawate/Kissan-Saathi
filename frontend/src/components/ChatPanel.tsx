@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useVoiceBot } from '../hooks/useVoiceBot';
 import { Mic, Send, Bot, User, Sparkles, Loader2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import ReactMarkdown from 'react-markdown';
 
 export default function ChatPanel() {
     const [messages, setMessages] = useState<any[]>([]);
     const [input, setInput] = useState('');
-    const [language, setLanguage] = useState('en');
+    const { language, setLanguage } = useLanguage();
     const [loading, setLoading] = useState(false);
     
     const { isRecording, isProcessing, toggleRecording } = useVoiceBot(language);
@@ -119,13 +120,13 @@ export default function ChatPanel() {
                         <p className="text-[10px] text-stone-500">Crop prices, recommendations & more</p>
                     </div>
                 </div>
-                <select value={language} onChange={e => setLanguage(e.target.value)}
+                <select value={language} onChange={e => setLanguage(e.target.value as any)}
                     className="border border-stone-200 rounded-lg p-1.5 text-xs bg-white shadow-sm">
                     <option value="en">English</option>
-                    <option value="hi">हिंदी</option>
+                    <option value="hi">हिन्दी</option>
                     <option value="mr">मराठी</option>
                     <option value="pa">ਪੰਜਾਬੀ</option>
-                    <option value="ha">हरियाणवी</option>
+                    <option value="hr">हरियाणवी</option>
                 </select>
             </div>
 

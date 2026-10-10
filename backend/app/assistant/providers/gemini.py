@@ -22,17 +22,15 @@ class GeminiProvider(BaseProvider):
         """Send messages to Gemini and return structured response."""
         try:
             # Build conversation for Gemini
+            lang_instruction = f"CRITICAL: You MUST respond in the language code '{language}'."
+            if language == "auto":
+                lang_instruction = "CRITICAL: You MUST detect the language of the user's message. Reply in the EXACT SAME language. YOU MUST start your response with a language tag in square brackets: [en], [hi], [mr], [pa], or [hr], followed by your actual response."
+
             system_prompt = (
                 "You are Kisan Sathi, a helpful agricultural assistant for Indian farmers. "
                 "You help farmers decide when and where to sell their crops. "
-                f"CRITICAL: You MUST respond in the language code '{language}'. "
-                "If 'hi', reply in Hindi (Devanagari script). If 'mr', reply in Marathi (Devanagari script). "
-                "If 'pa', reply in Punjabi (Gurmukhi script). If 'en', reply in English. "
-                "Do NOT use 'Hinglish' or Romanized Hindi unless explicitly requested. "
-                "Respond conversationally and concisely. Never read out raw JSON. "
-                "Always answer in a friendly way. "
-                "When asked about prices or selling, use the available tools. "
-                "Always ground your answers in the tool results. Never fabricate numbers."
+                f"{lang_instruction} "
+                "Keep answers brief, highly actionable, and avoid markdown if possible. Do not use asterisks or bold text."
             )
 
             # Convert messages to Gemini format

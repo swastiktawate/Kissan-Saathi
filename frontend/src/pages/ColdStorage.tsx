@@ -17,14 +17,19 @@ const customIcon = new L.Icon({
 
 // Dummy Data around Nashik/Maharashtra
 const dummyStorages = [
-    { id: 1, name: "Kisan Seva Cold Storage", lat: 20.0075, lng: 73.7898, capacity: "5000 MT", rate: "₹1.5/kg per month", phone: "+91 98765 43210", dist: "1.2 km" },
-    { id: 2, name: "AgriSafe Nashik Unit", lat: 19.9850, lng: 73.7700, capacity: "12000 MT", rate: "₹1.2/kg per month", phone: "+91 99887 76655", dist: "3.5 km" },
-    { id: 3, name: "Sahyadri Cold Chain", lat: 19.9500, lng: 73.8100, capacity: "8000 MT", rate: "₹1.4/kg per month", phone: "+91 91234 56789", dist: "5.8 km" },
-    { id: 4, name: "MahaFresh Storage", lat: 20.0200, lng: 73.8300, capacity: "3000 MT", rate: "₹1.6/kg per month", phone: "+91 98989 12121", dist: "7.1 km" }
+    { id: 1, name: "Supreme Fresh", lat: 19.090152, lng: 73.03137, capacity: "5000 MT", rate: "₹1.5/kg per month", phone: "Not Available", dist: "Navi Mumbai", mapsLink: "https://maps.app.goo.gl/82nXibFw6xYhTLBn6" },
+    { id: 2, name: "Rishi Ice and Cold Storage", lat: 19.063241, lng: 73.028541, capacity: "8000 MT", rate: "₹1.2/kg per month", phone: "09821787878", dist: "Navi Mumbai", mapsLink: "https://maps.app.goo.gl/thvNT6EanwM74Xsu8" },
+    { id: 3, name: "Prabhu Hira Ice and Cold Storage", lat: 19.069167, lng: 73.008386, capacity: "4500 MT", rate: "₹1.4/kg per month", phone: "09511110080", dist: "Navi Mumbai", mapsLink: "https://maps.app.goo.gl/b4HGXsTUwyaXusXm9" },
+    { id: 4, name: "Snowman Logistics", lat: 19.087648, lng: 73.139770, capacity: "12000 MT", rate: "₹1.8/kg per month", phone: "09821383252", dist: "Navi Mumbai", mapsLink: "https://maps.app.goo.gl/ZoVkubUfVXNPRXvK7" },
+    { id: 5, name: "JWL Cold Storage", lat: 18.961725, lng: 73.046260, capacity: "10000 MT", rate: "₹1.6/kg per month", phone: "Not Available", dist: "Navi Mumbai", mapsLink: "https://maps.app.goo.gl/sVgMS9uHkiauu9oV7" },
+    { id: 6, name: "Bhalerao Cold Storage", lat: 20.125854, lng: 73.964295, capacity: "3000 MT", rate: "₹1.1/kg per month", phone: "Not Available", dist: "Nashik", mapsLink: "https://maps.google.com/?q=20.125854,73.964295" },
+    { id: 7, name: "Sangale Cold Storage", lat: 20.098164, lng: 74.115558, capacity: "6500 MT", rate: "₹1.3/kg per month", phone: "Not Available", dist: "Nashik", mapsLink: "https://maps.google.com/?q=20.098164,74.115558" },
+    { id: 8, name: "Arya Cold Storage", lat: 20.127155, lng: 73.968179, capacity: "5500 MT", rate: "₹1.2/kg per month", phone: "Not Available", dist: "Nashik", mapsLink: "https://maps.google.com/?q=20.127155,73.968179" },
+    { id: 9, name: "Vakratunda Cold Storage", lat: 20.138261, lng: 73.966165, capacity: "4000 MT", rate: "₹1.4/kg per month", phone: "Not Available", dist: "Nashik", mapsLink: "https://maps.google.com/?q=20.138261,73.966165" }
 ];
 
 export default function ColdStorage() {
-    const center: [number, number] = [19.9975, 73.7898]; // Nashik
+    const center: [number, number] = [19.6, 73.5]; // Maharashtra Center
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     return (
@@ -42,7 +47,7 @@ export default function ColdStorage() {
 
             {/* Map Area */}
             <div className="h-[40vh] w-full z-0 relative">
-                <MapContainer center={center} zoom={12} className="h-full w-full" zoomControl={false}>
+                <MapContainer center={center} zoom={8} className="h-full w-full" zoomControl={false}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/">OSM</a>'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -66,7 +71,7 @@ export default function ColdStorage() {
                 {/* Float indicator */}
                 <div className="absolute top-2 right-2 bg-white px-3 py-1.5 rounded-full shadow-md z-[1000] text-xs font-bold text-stone-700 flex items-center gap-1 border border-stone-200">
                     <MapPin size={14} className="text-green-600" />
-                    Nashik, MH
+                    Maharashtra
                 </div>
             </div>
 
@@ -106,11 +111,18 @@ export default function ColdStorage() {
                             </div>
                             
                             <div className="flex gap-2">
-                                <button className="flex-1 bg-green-50 text-green-700 border border-green-200 py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-green-100 transition-colors">
+                                <button 
+                                    onClick={() => {
+                                        if(store.phone !== 'Not Available') window.open('tel:' + store.phone);
+                                        else alert('Contact number not available for this storage.');
+                                    }}
+                                    className={`flex-1 border py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors ${store.phone !== 'Not Available' ? 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100' : 'bg-stone-50 text-stone-400 border-stone-200 cursor-not-allowed'}`}>
                                     <Phone size={14} />
-                                    Call Now
+                                    {store.phone !== 'Not Available' ? 'Call Now' : 'No Number'}
                                 </button>
-                                <button className="flex-1 bg-green-600 text-white py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-green-700 transition-colors shadow-sm">
+                                <button 
+                                    onClick={() => window.open(store.mapsLink, '_blank')}
+                                    className="flex-1 bg-green-600 text-white py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-green-700 transition-colors shadow-sm">
                                     <Navigation size={14} />
                                     Directions
                                 </button>

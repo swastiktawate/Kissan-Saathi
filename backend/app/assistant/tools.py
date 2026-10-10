@@ -32,10 +32,9 @@ async def execute_tool(tool_name: str, arguments: dict):
                 start_date=origin
             )
             res = await predict_forecast(req)
-            # Trim the 365-day forecast down to 14 days to prevent overwhelming the LLM
+            # Return the full forecast so the LLM can answer long-term queries (e.g. 6 months out)
             forecast_data = res.get("forecast", [])
-            short_forecast = forecast_data[:14]
-            return json.dumps({"forecast": short_forecast})
+            return json.dumps({"forecast": forecast_data})
         except Exception as e:
             return json.dumps({"error": f"Forecast failed: {e}"})
     return json.dumps({"error": "tool not found"})
