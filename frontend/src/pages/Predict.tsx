@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import PredictionChart from '../components/PredictionChart';
 import { Loader2 } from 'lucide-react';
+import PlantingInsightCard from '../components/PlantingInsightCard';
+import { generatePlantingInsight } from '../utils/plantingInsights';
+import type { PlantingInsight } from '../utils/plantingInsights';
 
 export default function Predict() {
+  const { t } = useLanguage();
   const [commodity, setCommodity] = useState('Tomato');
   const [market, setMarket] = useState('APMC Mumbai');
   const [variety, setVariety] = useState('Other');
@@ -12,6 +17,7 @@ export default function Predict() {
   const [startDate, setStartDate] = useState(today);
 
   const [forecastData, setForecastData] = useState<any[] | null>(null);
+  const [insight, setInsight] = useState<PlantingInsight | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +26,7 @@ export default function Predict() {
     setIsLoading(true);
     setError(null);
     setForecastData(null);
+    setInsight(null);
 
     const payload = {
       commodity,
@@ -45,6 +52,7 @@ export default function Predict() {
       const data = await res.json();
       if (data.forecast && data.forecast.length > 0) {
         setForecastData(data.forecast);
+        setInsight(generatePlantingInsight(data.forecast, commodity, startDate));
       } else {
         setError('No forecast data returned.');
       }
@@ -60,6 +68,9 @@ export default function Predict() {
       <div className="mb-6 mt-2">
         <h1 className="text-2xl font-bold text-gray-900">1-Year Price Forecast</h1>
         <p className="text-sm text-gray-500 mt-1">AI-powered market predictions based on historical data.</p>
+          <div className="mt-2 inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs px-2 py-1 rounded">
+            <strong>Note:</strong> {t('forecast_accuracy_note')}
+          </div>
       </div>
 
       <div className="bg-white shadow-md rounded-xl p-5 border border-green-100">
@@ -139,7 +150,10 @@ export default function Predict() {
       )}
 
       {forecastData && (
-        <PredictionChart data={forecastData} />
+        <>
+          <PredictionChart data={forecastData} />
+          <PlantingInsightCard insight={insight} />
+        </>
       )}
     </div>
   );

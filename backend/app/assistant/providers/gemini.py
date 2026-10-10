@@ -49,21 +49,23 @@ class GeminiProvider(BaseProvider):
             last_msg = messages[-1].get("content", "").lower() if is_user else ""
             
             needs_forecast = is_user and any(kw in last_msg for kw in [
-                "forecast", "predict", "future", "agla", "mahina", "next", "month", "bhavishya"
+                "forecast", "predict", "future", "agla", "mahina", "next", "month", "bhavishya",
+                "भविष्य", "भविष्यवाणी", "महिना", "आगे", "अंदाज", "भावी"
             ])
             
             needs_recommend = is_user and any(kw in last_msg for kw in [
                 "sell", "price", "mandi", "wait", "tomato", "onion",
-                "tamatar", "pyaaz", "bechna", "kab", "kaha", "recommend"
+                "tamatar", "pyaaz", "bechna", "kab", "kaha", "recommend",
+                "बेचना", "बेचूँ", "बेच", "मंडी", "भाव", "दाम", "कहाँ", "कधी", "कुठे", "विकायचं", "विकू"
             ])
 
             if needs_forecast or needs_recommend:
                 crop = "tomato"
-                if any(k in last_msg for k in ["onion", "pyaaz", "pyaj"]):
+                if any(k in last_msg for k in ["onion", "pyaaz", "pyaj", "प्याज़", "कांदा"]):
                     crop = "onion"
-                elif any(k in last_msg for k in ["potato", "aloo", "alu"]):
+                elif any(k in last_msg for k in ["potato", "aloo", "alu", "आलू", "बटाटा"]):
                     crop = "potato"
-                elif any(k in last_msg for k in ["banana", "kela"]):
+                elif any(k in last_msg for k in ["banana", "kela", "केला", "केळी"]):
                     crop = "banana"
                     
                 if needs_forecast:

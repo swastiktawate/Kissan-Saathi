@@ -54,6 +54,8 @@ export const translations = {
         km_away: "km away",
         best_option: "Best Option",
         hero_subtitle: "Better decisions for your crops, with data.",
+        forecast_accuracy_note: "Predictions are most accurate for the next 7 days.",
+        smart_insight_title: "💡 Smart Planting Insight",
     },
     hi: {
         nav_home: "मुख्यपृष्ठ",
@@ -107,6 +109,8 @@ export const translations = {
         km_away: "किमी दूर",
         best_option: "सबसे अच्छा विकल्प",
         hero_subtitle: "आपकी फसल के लिए बेहतर फैसले, डेटा के साथ।",
+        forecast_accuracy_note: "अगले 7 दिनों के लिए भविष्यवाणियाँ सबसे सटीक हैं।",
+        smart_insight_title: "💡 स्मार्ट रोपण सलाह",
     },
     mr: {
         nav_home: "मुख्यपृष्ठ",
@@ -160,6 +164,8 @@ export const translations = {
         km_away: "किमी दूर",
         best_option: "उत्तम पर्याय",
         hero_subtitle: "तुमच्या पिकांसाठी उत्तम निर्णय, डेटा सोबत.",
+        forecast_accuracy_note: "पुढील ७ दिवसांचे अंदाज सर्वात अचूक असतात.",
+        smart_insight_title: "💡 स्मार्ट लागवड सल्ला",
     },
     hr: {
         nav_home: "घर",
@@ -213,6 +219,8 @@ export const translations = {
         km_away: "किमी दूर",
         best_option: "कसूता विकल्प",
         hero_subtitle: "आपकी फसल खातिर बढ़िया फैसले, डेटा गैल।",
+        forecast_accuracy_note: "अगले 7 दिनां की भविष्यवाणी सबतै बढ़िया अर सही होवै सै।",
+        smart_insight_title: "💡 समझदार बिजाई सलाह",
     },
     pa: {
         nav_home: "ਮੁੱਖ ਪੰਨਾ",
@@ -266,6 +274,8 @@ export const translations = {
         km_away: "ਕਿਮੀ ਦੂਰ",
         best_option: "ਸਭ ਤੋਂ ਵਧੀਆ ਵਿਕਲਪ",
         hero_subtitle: "ਤੁਹਾਡੀਆਂ ਫਸਲਾਂ ਲਈ ਬਿਹਤਰ ਫੈਸਲੇ, ਡੇਟਾ ਦੇ ਨਾਲ।",
+        forecast_accuracy_note: "ਅਗਲੇ 7 ਦਿਨਾਂ ਦੀਆਂ ਭਵਿੱਖਬਾਣੀਆਂ ਸਭ ਤੋਂ ਸਹੀ ਹੁੰਦੀਆਂ ਹਨ।",
+        smart_insight_title: "💡 ਸਮਾਰਟ ਬਿਜਾਈ ਸਲਾਹ",
     }
 };
 

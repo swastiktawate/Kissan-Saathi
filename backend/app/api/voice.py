@@ -45,7 +45,7 @@ async def voice_chat(
             raise HTTPException(status_code=stt_resp.status_code, detail="STT failed")
 
         transcript = stt_resp.json().get("transcript", "")
-        print(f'PRINT: "Transcribed: {transcript}"')
+        pass # removed print to avoid UnicodeEncodeError
 
     except HTTPException:
         raise
@@ -73,7 +73,7 @@ async def voice_chat(
             detected_lang_code = match.group(1).lower()
             gemini_text = match.group(2).strip()
             
-        print(f'PRINT: "Gemini replied [{detected_lang_code}]: {gemini_text[:100]}..."')
+        pass
     except Exception as e:
         tb = traceback.format_exc()
         logger.error(f"Agent exception:\n{tb}")

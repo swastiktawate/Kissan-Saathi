@@ -79,3 +79,21 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 UnicodeEncodeError: 'charmap' codec can't encode characters in position 21-22: character maps to <undefined>
 
+--- STT ERROR ---
+Traceback (most recent call last):
+  File "C:\Users\VEDANT\Documents\antigravity\hopeful-bose\backend\app\api\voice.py", line 48, in voice_chat
+    print(f'PRINT: "Transcribed: {transcript}"')
+  File "C:\Users\VEDANT\AppData\Local\Python\pythoncore-3.11-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 21-22: character maps to <undefined>
+
+--- STT ERROR ---
+Traceback (most recent call last):
+  File "C:\Users\VEDANT\Documents\antigravity\hopeful-bose\backend\app\api\voice.py", line 48, in voice_chat
+    print(f'PRINT: "Transcribed: {transcript}"')
+  File "C:\Users\VEDANT\AppData\Local\Python\pythoncore-3.11-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 21-22: character maps to <undefined>
+

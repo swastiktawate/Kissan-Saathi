@@ -55,12 +55,7 @@ export default function ChatPanel() {
                 ];
             });
             
-            // Audio is natively played by useVoiceBot, but just in case:
-            if (vr.audio_base64 && !vr._played) {
-                const audio = new Audio(`data:audio/wav;base64,${vr.audio_base64}`);
-                audio.play().catch(e => console.error("Audio auto-play blocked", e));
-                vr._played = true; // Mark as played to prevent double play in strict mode
-            }
+            
             
             // Clear the state so it doesn't trigger again on re-renders
             navigate(location.pathname, { replace: true, state: {} });
