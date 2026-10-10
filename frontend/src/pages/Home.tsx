@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, Mic, Send, ArrowUpRight, TrendingUp, ChevronRight, Leaf, MapPin } from 'lucide-react';
+import { Bell, ArrowUpRight, TrendingUp, ChevronRight, Leaf, MapPin, Warehouse, Users } from 'lucide-react';
 
 const mockData: Record<string, any> = {
     'Tamatar': {
@@ -46,13 +46,8 @@ import PolicyAlertBanner from '../components/PolicyAlertBanner';
 export default function Home() {
     const [selectedCrop, setSelectedCrop] = useState('Tamatar');
     const [selectedHomeMandi, setSelectedHomeMandi] = useState('Vashi Mandi');
-    const [chatInput, setChatInput] = useState('');
     const navigate = useNavigate();
     
-    const handleQuickChat = () => {
-        if(chatInput.trim()) navigate('/chat', { state: { initialMsg: chatInput } });
-    };
-
     const data = mockData[selectedCrop] || mockData['Tamatar'];
 
     return (
@@ -83,23 +78,41 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Search/Chat Bar */}
-            <div className="mx-4 mt-6">
-                <div className="flex items-center bg-white border border-stone-200 shadow-md rounded-full p-1.5">
-                    <button className="p-2 text-stone-400">
-                        <Mic size={20} />
-                    </button>
-                    <input 
-                        type="text" 
-                        value={chatInput}
-                        onChange={e => setChatInput(e.target.value)}
-                        onKeyDown={e => e.key === 'Enter' && handleQuickChat()}
-                        placeholder="Kya mujhe aaj tamatar bechna chahiye?" 
-                        className="flex-1 px-2 text-sm outline-none"
-                    />
-                    <button onClick={handleQuickChat} className="bg-green-600 p-2 rounded-full text-white shadow-sm">
-                        <Send size={18} />
-                    </button>
+            {/* QUICK ACCESS */}
+            <div className="px-4 mt-4">
+                <h2 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-2">
+                    QUICK ACCESS
+                </h2>
+                <div className="grid grid-cols-2 gap-3">
+                    {/* Cold Storage Card */}
+                    <div 
+                        onClick={() => navigate('/cold-storage')}
+                        className="bg-green-50 border border-green-100 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-green-100 transition-colors shadow-sm"
+                    >
+                        <div className="flex items-center gap-2">
+                            <Warehouse size={24} className="text-green-700" />
+                            <div className="flex flex-col">
+                                <span className="text-sm font-bold text-green-900 leading-tight">Cold Storage</span>
+                                <span className="text-[10px] text-green-700">Find nearby storage</span>
+                            </div>
+                        </div>
+                        <ChevronRight size={16} className="text-green-700 opacity-50" />
+                    </div>
+
+                    {/* Farmer Pooling Card */}
+                    <div 
+                        onClick={() => navigate('/pooling')}
+                        className="bg-green-50 border border-green-100 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-green-100 transition-colors shadow-sm"
+                    >
+                        <div className="flex items-center gap-2">
+                            <Users size={24} className="text-green-700" />
+                            <div className="flex flex-col">
+                                <span className="text-sm font-bold text-green-900 leading-tight">Farmer Pooling</span>
+                                <span className="text-[10px] text-green-700">Sell together</span>
+                            </div>
+                        </div>
+                        <ChevronRight size={16} className="text-green-700 opacity-50" />
+                    </div>
                 </div>
             </div>
 

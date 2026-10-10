@@ -49,35 +49,52 @@ class GeminiProvider(BaseProvider):
             # Check if this is a farming/price query from the user that needs tools
             is_user = messages and messages[-1].get("role") == "user"
             last_msg = messages[-1].get("content", "").lower() if is_user else ""
-            needs_tools = is_user and any(kw in last_msg for kw in [
+            
+            needs_forecast = is_user and any(kw in last_msg for kw in [
+                "forecast", "predict", "future", "agla", "mahina", "next", "month", "bhavishya"
+            ])
+            
+            needs_recommend = is_user and any(kw in last_msg for kw in [
                 "sell", "price", "mandi", "wait", "tomato", "onion",
-                "tamatar", "pyaaz", "bechna", "kab", "kaha", "recommend",
-                "forecast", "weather", "cost", "transport"
+                "tamatar", "pyaaz", "bechna", "kab", "kaha", "recommend"
             ])
 
-            if needs_tools:
+            if needs_forecast or needs_recommend:
                 crop = "tomato"
-                if any(k in last_msg for k in ["onion", "pyaaz"]):
+                if any(k in last_msg for k in ["onion", "pyaaz", "pyaj"]):
                     crop = "onion"
-                elif any(k in last_msg for k in ["potato", "aloo"]):
+                elif any(k in last_msg for k in ["potato", "aloo", "alu"]):
                     crop = "potato"
                 elif any(k in last_msg for k in ["banana", "kela"]):
                     crop = "banana"
                     
-                # Return a tool call for the recommend endpoint
-                return {
-                    "role": "assistant",
-                    "content": "",
-                    "tool_calls": [{
-                        "name": "recommend",
-                        "arguments": {
-                            "crop": crop,
-                            "home_mandi": "vashi",
-                            "quantity_q": 50,
-                            "horizon_days": 7
-                        }
-                    }]
-                }
+                if needs_forecast:
+                    return {
+                        "role": "assistant",
+                        "content": "",
+                        "tool_calls": [{
+                            "name": "forecast_price",
+                            "arguments": {
+                                "crop": crop,
+                                "market": "Vashi",
+                                "district": "Mumbai"
+                            }
+                        }]
+                    }
+                else:
+                    return {
+                        "role": "assistant",
+                        "content": "",
+                        "tool_calls": [{
+                            "name": "recommend",
+                            "arguments": {
+                                "crop": crop,
+                                "home_mandi": "vashi",
+                                "quantity_q": 50,
+                                "horizon_days": 7
+                            }
+                        }]
+                    }
 
             # If there is tool history, summarize it
             context_str = ""

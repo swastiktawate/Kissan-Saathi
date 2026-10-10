@@ -21,4 +21,21 @@ async def execute_tool(tool_name: str, arguments: dict):
     elif tool_name == "run_whatif":
         # simple mock
         return json.dumps({"status": "whatif_executed"})
+    elif tool_name == "forecast_price":
+        # Call the forecast endpoint logic directly
+        try:
+            from backend.app.api.forecast import ForecastRequest, predict_forecast
+            req = ForecastRequest(
+                commodity=arguments.get("crop", "tomato").capitalize(),
+                market=arguments.get("market", "Vashi").capitalize(),
+                district=arguments.get("district", "Mumbai").capitalize(),
+                start_date=origin
+            )
+            res = await predict_forecast(req)
+            # Trim the 365-day forecast down to 14 days to prevent overwhelming the LLM
+            forecast_data = res.get("forecast", [])
+            short_forecast = forecast_data[:14]
+            return json.dumps({"forecast": short_forecast})
+        except Exception as e:
+            return json.dumps({"error": f"Forecast failed: {e}"})
     return json.dumps({"error": "tool not found"})

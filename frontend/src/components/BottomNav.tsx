@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Store, MessageCircle, BarChart3, TrendingUp } from 'lucide-react';
+import { Home, Store, MessageCircle, TrendingUp, BarChart3 } from 'lucide-react';
 
 export default function BottomNav() {
     const loc = useLocation().pathname;

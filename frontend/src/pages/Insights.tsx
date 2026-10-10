@@ -4,7 +4,6 @@ import { ArrowLeft, Info, ChevronRight } from 'lucide-react';
 import WhatIfSliders from '../components/WhatIfSliders';
 import FairPriceMeter from '../components/FairPriceMeter';
 import RegretView from '../components/RegretView';
-import FarmerPooling from '../components/FarmerPooling';
 import NewsFeed from '../components/NewsFeed';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -69,7 +68,6 @@ export default function Insights() {
                 >
                     News & Policy
                 </button>
-                <Link to="/mandis" className="shrink-0 px-3 py-3 text-stone-500 text-center">Compare</Link>
             </div>
 
             {activeTab === 'Cost of Waiting' && (
@@ -138,7 +136,6 @@ export default function Insights() {
                     <div className="mt-8">
                         <FairPriceMeter crop="tomato" mandi="vashi" />
                         <RegretView crop="tomato" mandi="vashi" />
-                        <FarmerPooling />
                     </div>
                 </div>
             )}
