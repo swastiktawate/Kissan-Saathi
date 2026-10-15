@@ -1,15 +1,76 @@
-venv/
-node_modules/
-.env
-data/raw/
-*.duckdb
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 .pytest_cache/
+.coverage
+htmlcov/
 
-# Scratch and test files
-test_*.py
-setup_*.py
-list_*.py
-fix_*.py
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+frontend/dist-ssr/
+.vite/
+*.local
+
+# Environment Variables & Secrets (Keep private!)
+.env
+.env.*
+!.env.example
+
+# Local Databases & Raw Ingest Data
+*.duckdb
+*.duckdb.wal
+data/raw/
+
+# Temporary / Scratch scripts & artifacts
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+chat_out.txt
+dummy.wav
+file1.csv
+fix_*.py
+setup_*.py
+test_*.py
+list_*.py
+generate_*.py
+verify.py
+
+# Editor & OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
