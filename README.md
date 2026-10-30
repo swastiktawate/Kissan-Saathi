@@ -181,6 +181,11 @@ SARVAM_API_KEY=your_sarvam_ai_api_key   # Optional, enables Indic Voice STT/TTS
 DATA_MODE=auto
 ```
 
+For the frontend, set the backend URL (defaults to `http://localhost:8000`):
+```env
+VITE_API_URL=http://localhost:8000
+```
+
 ---
 
 ### 4. Backend Setup & Run
