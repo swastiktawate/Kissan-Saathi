@@ -1,4 +1,4 @@
-# 🌾 Kisan Saathi (किसान साथी)
+# 🌾 Kissan Saathi (किसान साथी)
 ### *Autonomous Agri-Tech Decision Intelligence & Multilingual AI Copilot for Indian Farmers*
 
 [![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
