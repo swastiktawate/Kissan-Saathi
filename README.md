@@ -18,7 +18,7 @@
 
 **Kisan Saathi (किसान साथी)** is an end-to-end autonomous decision intelligence platform and Indic voice assistant built for smallholder farmers across India.
 
-Instead of only displaying spot Mandi prices, Kisan Saathi computes the farmer's **True Net Return**—deducting dynamic transport costs, transit spoilage risks, weather delays, and holding costs—to give farmers an actionable recommendation: **Sell Today, Hold for Price Surge, or Transport to a Higher-Paying Mandi**.
+Instead of only displaying spot Mandi prices, Kisan Saathi computes the farmer's **True Net Return** - deducting dynamic transport costs, transit spoilage risks, weather delays, and holding costs—to give farmers an actionable recommendation: **Sell Today, Hold for Price Surge, or Transport to a Higher-Paying Mandi**.
 
 ---
 
