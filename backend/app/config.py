@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     CORS_ORIGINS: str = "http://localhost:5173"
     RATE_LIMIT_CHAT_PER_MIN: int = 20
     LOG_LEVEL: str = "INFO"
+    MAX_UPLOAD_MB: int = 10
 
     # Tunable thresholds
     TRUST_THRESHOLD_HIGH: int = 70

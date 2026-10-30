@@ -29,6 +29,16 @@ async def voice_chat(
     stt_headers = {"api-subscription-key": settings.SARVAM_API_KEY}
 
     try:
+        # Reject oversized uploads before reading into memory (issue #3)
+        file.file.seek(0, 2)
+        upload_size = file.file.tell()
+        file.file.seek(0)
+        max_bytes = settings.MAX_UPLOAD_MB * 1024 * 1024
+        if upload_size > max_bytes:
+            raise HTTPException(
+                status_code=413,
+                detail=f"File too large: {upload_size} bytes exceeds {settings.MAX_UPLOAD_MB} MB limit",
+            )
         content = await file.read()
         stt_files = {
             "file": (file.filename or "audio.webm", content, file.content_type or "audio/webm"),
